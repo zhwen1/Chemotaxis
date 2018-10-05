@@ -1,17 +1,23 @@
 Bacteria [] bob;
 void setup()   
 {     
+  int z = color(255, 0, 0);
+  int y = color(255, 255, 255);
   size(500, 500);
-  bob = new Bacteria[8];
+  bob = new Bacteria[500];
   for (int i = 0; i<bob.length; i++)
   {
-    bob[i] = new Bacteria();
+    if (i%3 == 0) {
+      bob[i] = new Bacteria((int)(Math.random()*500), (int)(Math.random()*500), y);
+    } else {
+      bob[i] = new Bacteria((int)(Math.random()*500), (int)(Math.random()*500), z);
+    }
   }
   //initialize bacteria variables here
 }   
 void draw()   
 {    
-  background(0);
+  background(249, 187, 230);
   for (int i=0; i<bob.length; i++)
   {
     bob[i].show();
@@ -21,11 +27,12 @@ void draw()
 }
 class Bacteria    
 {     
-  int myX, myY;
-  Bacteria(int x, int y)
+  int myX, myY, myColor;
+  Bacteria(int x, int y, int z)
   {
     myX = x;
     myY = y;
+    myColor = z;
   }
   void move()
   {
@@ -34,7 +41,7 @@ class Bacteria
   }
   void show()
   {
-    fill(255);
+    fill(myColor);
     ellipse(myX, myY, 10, 10);
   }
 }
